@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+#include <random> 
+using namespace std;
+
+typedef struct{
+    
+vector<int>entradaX;
+vector<double>pesosW;
+double saida = 0;
+}PerceptronInf;
+
+PerceptronInf perceptronCalculo(PerceptronInf perceptron){
+ for(int i =0 ; i< perceptron.entradaX.size();i++){
+  perceptron.saida += perceptron.entradaX.at(i)*perceptron.pesosW.at(i);
+ }
+return perceptron;
+}
+
+int main() {
+    
+mt19937 gen(1);
+uniform_int_distribution<> distrib(-200,200);
+vector<int> X;
+vector<double> W;
+PerceptronInf perceptron;
+
+double vett[1000];
+for(int j = 0; j<1000 ; j++){
+    vett[j]= distrib(gen)/100.0;
+    cout<<vett[j]<<endl;
+}
+
+//Bias
+X.push_back(1);
+W.push_back(0.5);
+
+//Entradas
+int temp;
+for (int i = 0; i <2; i++){
+    cin>>temp;
+    X.push_back(temp);
+    W.push_back(0.5);
+}
+
+perceptron.entradaX = X;
+perceptron.pesosW = W;
+perceptron = perceptronCalculo(perceptron);
+cout << perceptron.saida;
+
+ofstream meuArquivoCSV("dados.csv");
+meuArquivoCSV<<"FodASEE"<<endl;
+stringstream ss1;
+ss1<<"Deus"<<"Quero OK"<<endl;
+meuArquivoCSV<<ss1.str();
+meuArquivoCSV << "Bob" << "," << 35 << "," << "Faro" << std::endl;
+meuArquivoCSV.close();
+
+return 0;
+}
