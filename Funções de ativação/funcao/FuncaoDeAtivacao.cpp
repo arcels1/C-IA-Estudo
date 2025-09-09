@@ -22,10 +22,9 @@ uniform_real_distribution<double> distribuicao(-2.0,2.0);
 
 
 void gerarArquivo(string titulo, const vector<double>& entrada,const vector<double>& saida){
-        string arquivoNome  = titulo + ".csv";
+        string arquivoNome  = "resultados/"+titulo + ".csv";
         ofstream gerenciarArquivo(arquivoNome);
-       
-
+        cout << gerenciarArquivo.tellp();
         gerenciarArquivo << "entradas"<<separador<<"saidas" << endl;
         for(int i = 0 ; i<entrada.size() ; i++){
             gerenciarArquivo<<entrada.at(i)<<separador<<saida.at(i)<<endl;
@@ -87,6 +86,10 @@ for(double v : valores){
 
 int main() {
 
+
+
+
+
 const int numeroLimite = 1000;
 vector<double> valoresTeste = {};
 gerarRandom(valoresTeste,numeroLimite);
@@ -97,5 +100,6 @@ funcaoLogisticaAmpliacao(valoresTeste, 1);
 funcaoLogisticaAmpliacao(valoresTeste, 10);
 funcaoTangenteHiperbolicaAmpliacao(valoresTeste,1);
 funcaoTangenteHiperbolicaAmpliacao(valoresTeste,10);
+
 return 0;
 }
